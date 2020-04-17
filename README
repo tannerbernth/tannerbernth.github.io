@@ -1,0 +1,10 @@
+This is my personal website/blog. I had hosted it for over a year using AWS. 
+
+To run this, a database will be needed and the application properties file will need to be updated accordingly. 
+
+Once those requirements are met;
+
+./gradlew bootRun 
+
+will run the application and it can be seen at localhost:5000
+

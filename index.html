@@ -1,0 +1,113 @@
+<!--
+Since you are checking the source, I just wanted to let you know
+this current version is just copied from what I previously had as my website. 
+
+The source for all of the pieces can be viewed under src/main/resources/templates. 
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="keywords" content="Tanner Bernth, Software Developer">
+	<meta name="description" content="Tanner Bernth - Software Developer. My personal site for sharing my projects and progress.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+
+	<link rel="shortcut icon" type="image/png" href="src/main/resources/public/img/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="src/main/resources/public/css/main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script src="src/main/resources/public/js/general.js" type="text/javascript"></script>
+	<script sec:authorize="isAuthenticated()" src="src/main/resources/public/js/navigation.js" type="text/javascript"></script>
+	<script src="src/main/resources/public/js/forms.js" type="text/javascript"></script>
+</head>
+<body>
+<main class="main" id="home">
+	<div class="container__header">
+		<header class="header">
+			<h1 class="h1 h--color-white">Tanner Bernth</h1>
+		</header>
+	</div>
+	<div class="container__nav container__nav--blue">
+        <nav class="nav">
+		    <ul class="nav__list nav__list--style-none nav__list--width-100">
+		        <li tabindex="0"><a href="#home" class="nav__a nav__a--white">Home</a></li>
+		        <li tabindex="0"><a href="#about" class="nav__a nav__a--white">About</a></li>
+		    </ul>
+		</nav>
+	</div>
+    <div class="container container--direction-column">
+        <div class="block landing">
+            <h1 class="h1">
+                Tanner Bernth
+            </h1>
+            <h3 class="h2">
+                Software Developer
+            </h3>
+        </div>
+	    <div class="block__responsive block--direction-column-reverse" id="about">
+		    <div class="about block__two-column block--grow-2 block--direction-column">
+		        <h1 class="h1 h--color-blue">About Me</h1>
+		        <p class="p">
+		            My name is Tanner Bernth. I'm a Software Developer.
+		        </p>
+		        <p class="p">
+		            I started making website templates when I was 13 years old, which led to my passion for programming. It all began on one of those ancient boxes, we called computers, from the 90's with the classic Notepad as my editor.
+		        </p>
+		        <p class="p"> 
+		            When it came to college, I already knew what I wanted to do before the question was asked. I decided to pursue Computer Science at the University of Arizona to acquire the title of "Computer Nerd" from my grandma- I mean, acquire a degree. 
+		        </p>
+		        <p class="p">
+		            I got both.
+		        </p>
+		        <p class="p">
+		            I believe that programming is the future and that it's never too late (or early) to learn. Java is my strongest programming language, but I'm always looking to experiment and expand my arsenal. 
+		        </p>
+		        <p class="p">
+		            Currently, my goal is to continue learning and becoming a better Software Developer. I want to share my progress and help others that take an interest
+		            in software development or spark an interest in people that are new to programming. 
+		        </p>
+		        <p class="p">
+		            Tanner Bernth
+		        </p>
+		    </div>
+		    <div class="block__two-column block--direction-column block--align-center">
+		        <div class="about__image-container">
+		            <img title="Tanner Bernth" alt="Tanner Bernth" src="src/main/resources/public/img/about.jpg" class="about__image">
+		        </div>
+		        <h3 class="h3 h--color-blue">Tanner Bernth</h3>
+		        <ul class="about__info">
+		            <li>University of Arizona '18</li>
+		            <li>BS in Computer Science</li>
+		        </ul>
+		        <ul class="about__info">
+		            <li class="font--bold">Languages/Technologies</li>
+		            <li>C</li>
+		            <li>CSS</li>
+		            <li>Git</li>
+		            <li>HTML</li>
+		            <li>Java</li>
+		            <li>Java Spring Boot</li>
+		            <li>JavaScript</li>
+		            <li>MySQL</li>
+		            <li>Oracle SQL</li>
+		            <li>PHP</li>
+		            <li>Sass</li>
+		        </ul>
+		    </div>
+		</div>
+    </div>
+    <footer class="footer">
+		<div class="block__default block--justify-center">
+			<div class="button__to-top" tabindex="0">
+				Top
+			</div>
+		</div>
+		<div class="block__default block--justify-center">
+			Tanner Bernth &copy; 2020
+		</div>
+	</footer>
+</main>
+</body>
+</html>
