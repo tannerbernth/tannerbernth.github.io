@@ -1,0 +1,8 @@
+<th:block th:fragment="notice">
+<div th:if="${success != null}" th:text="${success}" class="block success"></div>
+<div th:if="${notice != null}" th:text="${notice}" class="block notice"></div>
+<div th:if="${error != null}" th:text="${error}" class="block error"></div>
+<div sec:authorize="hasAuthority('ADMIN')" class="block notice">
+	<span class="admin__title">Admin</span> status
+</div> 
+</th:block>

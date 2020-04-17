@@ -1,0 +1,47 @@
+<th:block th:fragment="contact">
+<div class="mask display-none"></div>
+<div id="email-form" class="block block--overflow-initial block--padding-large block--direction-column block--position-fixed display-none">
+    <div id="email-close" class="message__form__close a__round" tabindex="1">
+        <span class="arrow arrow--right arrow--merge-left-right"></span>
+        <span class="arrow arrow--left arrow--merge-left-right"></span>
+    </div>
+    <h2 class="h2">Contact Me</h2>
+    <p class="p">
+        If you have any questions, comments, or want to contact me, send me an email here. 
+    </p>
+    <form class="form" method="post" th:action="@{/send-email}" th:object="${sendEmailDto}">
+        <div class="form__input">
+            <input type="text" class="form__input--text" placeholder="Email Address" th:field="*{address}">
+            <label class="form__label">Email</label>
+        </div>
+        <div class="form__input">
+            <input type="text" class="form__input--text" placeholder="Title" th:field="*{title}">
+            <label class="form__label">Title</label>
+        </div>
+        <div class="form__input">
+            <textarea class="form__input--text form__input--textarea" th:field="*{message}"></textarea>
+            <label class="form__label">Message</label>
+        </div>
+        <div class="form__input">
+            <div class="g-recaptcha" data-sitekey="6LfeFp4UAAAAABKd2-6VDfuFTXfaSwzkfzX9vqOV"></div>
+        </div>
+        <div class=""><input class="form__input--submit" type="submit" name="submit" value="Send"></div>
+    </form>
+</div>
+<div class="block__responsive">
+    <div id="contact" class="block__two-column block--padding-large block--border-none block--direction-column">
+        <h2 class="h2 h--color-blue">Contact Me</h2>
+        <div class="block block--border-none">
+            <a class="fa fa-linkedin" rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/tannerbernth/"></a>
+            <span class="fa fa-envelope"></span>
+        </div>
+    </div>
+    <div class="block__two-column block--padding-large block--border-left block--direction-column">
+        <h2 class="h2 h--color-blue">Check Out My Projects</h2>
+        <div class="block block--border-none">
+            <a class="fa fa-github" rel="noopener noreferrer" target="_blank" href="https://github.com/tannerbernth"></a>
+            <a class="fa fa-user-circle fa-disabled" th:href="@{/projects}"></a>
+        </div>
+    </div>
+</div>
+</th:block>

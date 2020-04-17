@@ -1,0 +1,36 @@
+<th:block th:if="${messages != null}">
+<div class="block block--overflow-initial block--padding-large group__users display-none opacity-zero">
+    <div id="user-group-close" class="message__form__close a__round" tabindex="1">
+        <span class="arrow arrow--right arrow--merge-left-right"></span>
+        <span class="arrow arrow--left arrow--merge-left-right"></span>
+    </div>
+    <h2 class="h2">Group Members - <th:block th:text="${messages[0].group.name == '' ? '[No Name]' : messages[0].group.name}"></th:block></h2>
+    <ul class="group__users__list">
+    <th:block th:each="username : ${messages[0].group.users}">
+        <li>
+            <a class="a__button" th:href="@{'/profile/'+${username.username}}" th:utext="${username.id==messages[0].group.leaderId ? '* ' + username.username : username.username}"></a>
+        </li>
+    </th:block>
+    </ul>
+</div>
+<div class="message__header">
+    <h3 id="group" th:text="${messages[0].group.name == '' ? '[ No Name ]' : messages[0].group.name}" th:classappend="${messages[0].group.name == '' ? 'h--color-gray' : 'h--color-blue'}" class="h3"></h3>
+    <h4 th:text="${'Created ' + messages[0].createdDate}" class="h4 h--color-gray"></h4>
+</div>
+<ul class="message__list">
+    <li class="message" th:classappend="${message.senderId == user.id} ? 'message__sender' : ''" th:each="message : ${messages}">
+        <div class="message__username" th:if="${message.senderId != user.id}">
+            <a class="a" th:href="@{'/profile/'+${message.senderUsername}}" th:text="${message.senderUsername}"></a>
+        </div>
+        <div class="message__info" th:classappend="${message.senderId == user.id} ? 'message__info--sender' : ''">
+            <p class="message__p" th:text="${message.message}"></p>
+            <div class="message__timestamp">
+                <th:block th:if="${message.createdDate != null}">
+                    <p th:if="${(message.createdDate.isAfter(lastreaddate) || message.createdDate.equals(lastreaddate)) && message.senderId != user.id}" class="message__unread">Unread</p>
+                </th:block>
+                <h4 th:text="${{message.createdDate}}" class="h4 h--color-gray"></h4>
+            </div>
+        </div>
+    </li>
+</ul>
+</th:block>

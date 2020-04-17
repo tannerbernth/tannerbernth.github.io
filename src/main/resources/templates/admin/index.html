@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Admin page</title>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+    	<main class="main">
+	    	<th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+	      	
+	        <div class="container container--direction-column">
+                <div class="block block--padding-large">
+	        	  <h1 class="h1 h--color-orange">Welcome to admin home, <th:block th:utext="${user.username}"></th:block></h1>
+                </div>
+                <div class="block block--padding-large">
+                    <a class="a" th:href="@{/admin/article-manager}">Article Manager</a>
+                </div>
+	        </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+	    </main>
+    </body>
+</html>

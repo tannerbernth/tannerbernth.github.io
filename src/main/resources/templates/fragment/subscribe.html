@@ -1,0 +1,17 @@
+<th:block th:fragment="subscribe">
+<div class="block block--padding-large block--direction-column">
+    <h2 class="h2 h--color-blue">
+        Interested in reading more?
+    </h2>
+    <h3 class="h3">Subscribe to receive email notifications!</h3>
+    <form method="post" th:action="@{/subscribe-email}" class="form form--display-flex">
+        <div class="form__input">
+            <input class="form__input--text input__connect-left" type="text" name="email" placeholder="Email">
+            <label class="form__label">Email Address</label>
+        </div>
+        <div class="form__input">
+            <input class="form__input--submit input__connect-right" type="submit" value="Subscribe">
+        </div>
+    </form>
+</div>
+</th:block>

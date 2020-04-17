@@ -1,0 +1,66 @@
+@import "../global";
+
+/*----- Article Manager -----*/
+.article-editor {
+	width: 100%;
+}
+
+.article-editor textarea {
+	min-height: 400px;
+}
+
+.article-editor input[type=text] {
+	width: 100%;
+}
+
+.article-editor input[type=submit] {
+	width: 20%;
+}
+
+.unpublished-articles {
+	width: 100%;
+}
+
+.unpublished-articles form {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.tools {
+	background: darken($main--color-white,10);
+	border: $main__border;
+	border-bottom: none;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 1%;
+	width: 100%;
+}
+
+.editor {
+	border: $main__border;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	color: $main--color-black;
+	height: 400px;
+	padding: 1%;
+	outline: 0;
+	overflow-y: scroll;
+}
+
+.editor:hover {
+	border: 1px solid lighten($main--color-blue,25);
+}
+
+.editor:focus {
+	border: 1px solid $main--color-blue;
+}
+
+/*----- Form Inputs -----*/
+input[type="file"] {
+	align-items: center;
+	display: flex;
+}

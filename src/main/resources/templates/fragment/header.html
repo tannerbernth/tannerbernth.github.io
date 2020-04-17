@@ -1,0 +1,7 @@
+<header th:fragment="header">
+    <h1 class="h1 h--color-white">Tanner Bernth</h1>
+    <ul sec:authorize="!isAuthenticated()" class="nav__list nav__list--style-none nav__list--nowrap">
+    	<li tabindex="0"><a href="/login" class="nav__a nav__a--white nav__a--border-transparent">Login</a></li>
+        <li tabindex="0"><a href="/register" class="nav__a nav__a--white nav__a--border-white">Register</a></li>
+    </ul>
+</header>

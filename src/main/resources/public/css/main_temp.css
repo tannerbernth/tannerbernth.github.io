@@ -1,0 +1,374 @@
+/*----- General -----*/
+* {
+	box-sizing: border-box;
+	color: rgba(240,240,240,1);
+	font-family: "Helvetica","Trebuchet MS", "Verdana", "Arial", "Palatino";
+	font-size: 16px;  /*Recommended Font Sizes: 8, 16, 24, 32, 48, 64, 95 */
+	line-height: 150%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: rgba(38,38,35,1);
+}
+
+a {
+	color: rgba(125,255,0,1);
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+h1 {
+	color: rgba(255,240,85,1);
+	font-size: 32px;
+}
+
+h2 {
+	color: rgba(255,119,0,1);
+	font-size: 24px;
+}
+
+h2 a {
+	color: inherit;
+	font-size: inherit;
+}
+
+span {
+	color: rgba(255,0,100,1);
+}
+
+main {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+}
+
+.content {
+	background: rgba(66,66,66,1);
+	border: 1px solid rgba(0,0,0,1);
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 1%;
+	padding: 1%;
+	width: 80%;
+}
+
+/*----- Header/Navigation -----*/
+header {
+	align-items: center;
+	border-bottom: 1px solid rgba(0,0,0,1);
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+	width: 100%;
+}
+
+#logo {
+	align-items: center;
+	display: flex;
+}
+
+nav {
+	align-items: center;
+	border-bottom: 1px solid rgba(0,0,0,1);
+	background: rgba(55,55,55,1);
+	display: flex;
+	padding: 15px;
+	position: sticky;
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	top: 0;
+	width: 100%;
+}
+
+header ul, nav ul {
+	display: flex;
+}
+
+header ul li, nav ul li {
+	padding: 0 5px;
+}
+
+nav ul {
+	justify-content: flex-end;
+	width: 100%;
+}
+
+#search {
+	margin-left: auto;
+}
+
+/*----- Profile -----*/
+#profile-header {
+	border: 1px solid rgba(0,0,0,1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 2%;
+	padding: 15px;
+	width: 98%;
+}
+
+#profile-img img {
+	border: 1px solid rgba(0,0,0,1);
+	padding: 1px;
+}
+
+#profile-header ul {
+
+}
+
+.role {
+	font-style: italic;
+}
+
+/*----- Messages -----*/
+#message-header {
+	border: 1px solid rgba(0,0,0,1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 2%;
+	padding: 15px;
+	width: 98%;
+}
+
+#message-header ul {
+
+}
+
+#message-bar {
+	border: 1px solid rgba(0,0,0,1);
+	color: rgba(0,200,255,1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 2%;
+	padding: 15px;
+	width: 98%;
+}
+
+.message {
+	align-items: flex-start;
+	background: rgba(68,68,65,1);
+	border: 1px solid rgba(0,0,0,1);
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	justify-content: center;
+	margin: 1%;
+	padding: 1%;
+}
+
+.sender {
+	align-items: flex-end;
+	background: rgba(68,68,65,1);
+	border: 1px solid rgba(0,0,0,1);
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	justify-content: center;
+	margin: 1%;
+	padding: 1%;
+}
+
+/*----- Article -----*/
+#articles {
+
+}
+
+article {
+	background: rgba(132,132,132,1);
+	border: 1px solid rgba(0,0,0,1);
+	margin: 1% 0 1% 0;
+	padding: 1%;
+	width: 100%;
+}
+
+.article-image {
+	display: flex;
+	border: 1px solid rgba(255,255,255,1);
+	margin: 0;
+	padding: 0;
+	width: 50%;
+}
+
+.article-image img {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.article-info {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+}
+
+.article-author {
+	margin: 0 1% 0 0;
+}
+
+.article-date h4 {
+	color: rgba(66,66,66,1);
+	font-size: 10px;
+	font-style: italic;
+}
+
+.article-text p {
+	line-height: 150%;
+}
+
+.article-text ul {
+	list-style: circle;
+	margin: 2%;
+}
+
+/*----- Users -----*/
+#user-list {
+
+}
+
+#user-list span {
+	font-size: 10px;
+	margin: 0 0 0 1%;
+}
+
+#user-list ul {
+	width: 100%;
+}
+
+#user-list li {
+	align-items: center;
+	border: 1px solid rgba(0,0,0,1);
+	display: flex;
+	padding: 2%;
+}
+
+.list-header {
+
+}
+
+/*----- Form -----*/
+form {
+
+}
+
+form div {
+	display: flex;
+	flex-direction: column;
+}
+
+form .checkbox {
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+}
+
+form .checkbox * {
+	margin: 0 1% 0 0;
+}
+
+input, textarea, button {
+	color: rgba(0,0,0,1);
+}
+
+/*----- Flash Message -----*/
+.flash-error, .flash-success {
+	align-items: center;
+	border-radius: 5px;
+	display: flex;
+	font-weight: bold;
+	justify-content: center;
+	margin-top: 2%;
+	padding: 1%;
+	width: 98%;
+}
+
+.flash-error {
+	background: rgba(240,240,240,1);
+	border: 2px solid rgba(255,0,100,1);
+}
+
+.flash-error span {
+	color: rgba(255,0,100,1);
+}
+
+.flash-success {
+	background: rgba(240,240,240,1);
+	border: 2px solid rgba(100,0,255,1);
+}
+
+.flash-success span {
+	color: rgba(100,0,255,1);
+}
+
+/*----- Text Editor -----*/
+#editor {
+	background: rgba(255,255,255,1);
+	border: 1px solid rgba(0,0,0,1);
+	color: rgba(0,0,0,1);
+	display: block;
+	min-height: 400px;
+	padding: 1%;
+}
+
+#editor * {
+	color: rgba(0,0,0,1);
+}
+
+#editor ul {
+	list-style: circle;
+	margin: 2%;
+}
+
+/*----- Misc. Text Styles -----*/
+.text-bold {
+	font-weight: bold;
+}
+
+.text-italic {
+	font-style: italic;
+}
+
+.text-underline {
+	text-decoration: underline;
+}
+
+.text-subscript {
+	align-self: flex-end;
+	font-size: 10px;
+	vertical-align: sub;
+}
+
+.text-superscript {
+	font-size: 10px;
+	vertical-align: super;
+}
+
+.text-ol {
+
+}
+
+.text-ul {
+	
+}
+
+/*----- Footer -----*/
+footer {
+	align-items: center;
+	border-top: 1px solid rgba(0,0,0,1);
+	display: flex;
+	justify-content: center;
+	margin: 3% 0 5% 0;
+	padding: 1%;
+	width: 100%;
+}

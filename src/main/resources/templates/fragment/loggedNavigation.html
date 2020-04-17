@@ -1,0 +1,31 @@
+<nav th:fragment="loggedNavigation">
+	<ul class="nav__list nav__list--style-none nav__list--width-100">
+		<li><h1><a href="/index" class="nav__a nav__h1">TB</a></h1></li>
+        <li tabindex="0"><a href="/index" class="nav__a nav__a--white">Home</a></li>
+        <li tabindex="0"><a href="/about" class="nav__a nav__a--white">About</a></li>
+        <li tabindex="0"><a href="/blog" class="nav__a nav__a--white">Blog</a></li>
+        <li tabindex="0"><a href="/users" class="nav__a nav__a--white">Users</a></li>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+        <li tabindex="0"><a href="/admin" class="nav__a nav__a--white nav__a--orange">Admin</a></li>
+        <li tabindex="0"><a href="/admin/article-manager" class="nav__a nav__a--white nav__a--orange">Article Manager</a></li>
+    	</th:block>
+    	<th:block sec:authorize="isAuthenticated()">
+    	<li class="nav__list--align-end">
+    		<div id="dropdown" class="nav__dropdown__selector" tabindex="0">
+    			<span class="nav__a nav__a--white" th:utext="${user.unreadCount > 0 ? user.username + '&nbsp;<span class=''message__notification''></span>' : user.username}"></span>
+    		<ul class="nav__dropdown">
+    			<li tabindex="0">
+    				<a href="/profile" class="nav__a nav__a--white">Profile</a>
+    			</li>
+    			<li tabindex="0">
+    				<a href="/messages" class="nav__a nav__a--white">Messages<span th:if="${user.unreadCount > 0}" class="message__count" th:utext="${user.unreadCount}"></span></a>
+    			</li>
+    			<li tabindex="0">
+    				<a href="/logout" class="nav__a nav__a--white">Logout</a>
+    			</li>
+    		</ul>
+    		</div>
+    	</li>
+    	</th:block>
+    </ul>
+</nav>

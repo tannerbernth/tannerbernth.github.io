@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+        	<th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <th:block th:include="fragment/notice :: notice"></th:block>
+                <th:block th:if="${userProfile != null}">
+                <div class="block block--padding-large block--direction-column">
+                    <div class="profile__image" th:text="${userProfile.username[0]}">
+                        <img src="/img/default.png"/>
+                    </div>
+                    <ul class="block__list">
+                        <li><h2 th:text="@{userProfile == null ? 'null' : ${userProfile.username}}"></h2></li>
+                        <li>
+                            <h3 class="h3">
+                            <th:block th:switch="${userProfile.roles[0].name}">
+                                <span class="admin__title" th:case="'ADMIN'" th:text="${'Administrator'}"></span>
+                                <th:block th:case="'USER'" th:text="${'User'}"></th:block>
+                            </th:block>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                </th:block>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <th:block th:include="fragment/notice :: notice"></th:block>
+                <ul class="users">
+                    <li class="users__header font--bold">Username</li>
+                    <th:block th:each="member : ${users}">
+                        <li class="users__user">
+                            <a th:text="${member.username}" th:href="@{'/profile/' + ${member.username}}" class="a__username"></a>
+                            <h4 class="h4 h--align-end h--color-gray" th:text="'Last Login '+(${member.lastLogin == null} ? 'Never' : ${{member.lastLogin}})"></h4>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

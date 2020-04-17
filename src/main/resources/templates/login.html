@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <div class="block success" th:if="${success != null}">
+                    <th:block th:text="${success}"></th:block>
+                </div>
+                <div class="block error" th:if="${param.error}">
+                    Username or Password invalid
+                </div>
+                <div class="block__responsive">
+                    <div class="block__two-column block--justify-center block--padding-extra-large block--margin-bottom">
+                        <form class="form" th:action="@{/login}" method="post">
+                            <div class="form__input">
+                                <input class="form__input--text" type="text" name="username" placeholder="Username" tabindex="1" />
+                                <label class="form__label"> Username </label>
+                            </div>
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" name="password" placeholder="Password" tabindex="2" />
+                                <label class="form__label"> Password </label> 
+                            </div>
+                            <div><input class="form__input--submit" type="submit" value="Log In"/></div>
+                        </form>
+                    </div>
+                    <div class="block__two-column block--grow-2 block--border-left block--align-center block--direction-column block--justify-center">
+                        <h2 class="h2 h--extra-large h--color-blue">Not a user?</h2>
+                        <h3 class="h3">
+                            <a class="a a--size-large" th:href="@{/register}">
+                                Register
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

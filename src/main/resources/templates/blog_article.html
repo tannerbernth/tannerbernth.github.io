@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <th:block th:include="fragment/notice :: notice"></th:block>
+                <article class="article block block--padding-large">
+                    <div class="article__image" th:attr="style=${'background: url(''https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-573066325531/uploads/' +article.filename+ ''') no-repeat; background-size: cover;'}">
+                    </div>
+                     <div class="article__header">
+                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                        <form class="form" th:action="@{'/admin/article-manager/'+${article.id}}+'/edit'" method="get">
+                            <div class="block__default block">
+                                <input class="form__input--submit form__input--submit input__connect-left" type="submit" value="Edit"> 
+                                <input class="form__input--submit form__input--submit input__connect-right" type="submit" value="Delete" formaction="" formmethod="post" th:attr="formaction=@{'/admin/article-manager/'+${article.id}}+'/delete'"> 
+                            </div>
+                        </form>
+                        </th:block>
+                        <h2 class="h2 h--margin-top" th:text="${article.title}"></h2>
+                        <div class="article__author">
+                            <th:block sec:authorize="!isAuthenticated()">
+                                <h3 class="h3 h--color-blue" th:text="${article.author.username}"></h3>
+                            </th:block>
+                            <th:block sec:authorize="isAuthenticated()">
+                                <h3>
+                                    <a class="h3 h__a h--color-blue" th:href="@{'/profile/'+${article.author.username}}" th:text="${article.author.username}"></a>
+                                </h3>
+                            </th:block>
+                            <h4 class="h4 h--color-gray" th:text="${{article.createdDate}}"></h4>
+                        </div>
+                    </div>
+                    <p class="article__text" th:utext="${article.article}"></p>
+                 </article>
+                 <div class="block block--direction-column block--padding-large">
+                    <h2 class="h2 h--color-blue h--margin-bottom">Anything to say? Leave a comment here</h2>
+                    <!--<h3 class="h3 h--margin-bottom">Anything to say? Leave a comment here.</h3>-->
+                    <form class="form" method="post" th:action="@{'/blog/'+${article.id}+'/comment'}" th:object="${commentDto}">
+                        <div sec:authorize="!isAuthenticated()" class="form__input">
+                            <input type="text" class="form__input--text" placeholder="Name" name="name">
+                            <label class="form__label">Name</label>
+                        </div>
+                        <div sec:authorize="!isAuthenticated()" class="form__input">
+                            <input type="text" class="form__input--text" placeholder="Email Address" name="address">
+                            <label class="form__label">Email Address</label>
+                        </div>
+                        <div class="form__input">
+                            <textarea class="form__input--text form__input--textarea comment__textarea" name="message"></textarea>
+                            <label class="form__label">Comment</label>
+                        </div>
+                        <div class="form__input" sec:authorize="!isAuthenticated()">
+                            <div class="g-recaptcha" data-sitekey="6LfeFp4UAAAAABKd2-6VDfuFTXfaSwzkfzX9vqOV"></div>
+                        </div>
+                        <div>
+                            <input type="hidden" th:value="${commentDto.articleId}" name="articleId">
+                            <input class="form__input--submit" type="submit" value="Send">
+                        </div>
+                    </form>
+                 </div>
+                 <div class="block block--padding-large block__connect__footer">
+                    <h2 class="h2 h--color-blue h--margin-bottom">Comments</h2>
+                    <div class="comments__none" th:if="${comments == null || comments.size() == 0}">
+                        Be the first to comment!
+                    </div>
+                    <ul class="comments__list" th:each="comment : ${comments}">
+                        <li>
+                            <div class="comments__header">
+                                <div th:if="${!comment.isAnon}">
+                                    <a sec:authorize="isAuthenticated()" class="comment__registered__user" th:href="@{'/profile/'+${comment.user.username}}" th:text="${comment.user.username}"></a>
+                                    <span class="comment__registered__user" sec:authorize="!isAuthenticated()" th:text="${comment.user.username}"></span>
+                                </div>
+                                <div th:if="${comment.isAnon}">
+                                    <th:block th:text="${comment.anonUsername}"></th:block>
+                                </div>
+                                <div>
+                                    <h4 class="h4 h--color-gray" th:text="${{comment.createdDate}}"></h4>
+                                </div>
+                            </div>
+                            <p class="comment__message" th:text="${comment.message}"></p>  
+                        </li>
+                    </ul>
+                 </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

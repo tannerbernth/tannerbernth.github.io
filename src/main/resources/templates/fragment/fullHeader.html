@@ -1,0 +1,15 @@
+<th:block th:fragment="fullHeader">
+    <th:block sec:authorize="!isAuthenticated()">
+    <div class="container__header">
+        <header th:include="fragment/header :: header" class="header"></header>
+    </div>
+    <div class="container__nav container__nav--blue">
+        <nav th:include="fragment/navigation :: navigation" class="nav"></nav>
+    </div>
+    </th:block>
+    <th:block sec:authorize="isAuthenticated()">
+    <div class="container__nav container__nav--blue">
+        <nav th:include="fragment/loggedNavigation :: loggedNavigation" class="nav"></nav>
+    </div>
+    </th:block>
+</th:block>

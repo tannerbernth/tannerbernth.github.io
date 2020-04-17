@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div sec:authorize="isAuthenticated()" class="banner banner--background-blue">
+                <h2 class="h2 h--color-white">Blog</h2>
+            </div>
+            <div class="container container--justify-center container--wrap">
+            <th:block th:include="fragment/notice :: notice"></th:block>
+            <div class="block block--padding-medium">
+                <div class="block block--border-none block--wrap block--justify-center">
+                <th:block th:each="article : ${articles}">
+                <article th:if="${articles != null}" class="thumbnail">
+                    <div class="thumbnail__header">
+                        <div class="thumbnail__title">
+                            <h2 class="a__fill">
+                                <a th:href="@{'/blog/'+${article.id}}" th:text="${article.title}" class="h2 h__a h__a--padding h--color-white a__fill"></a>
+                            </h2>
+                        </div>
+                        <a th:href="@{'/blog/'+${article.id}}">
+                            <img th:attr="title=${article.title},alt=${article.title}" th:src="${'https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-573066325531/uploads/'+article.filename}" class="thumbnail__image">
+                        </a>
+                    </div>
+                    <div class="thumbnail__body">
+                        <p class="thumbnail__text" th:utext="${article.article.length() >= 150 ? article.article.substring(0,150)+'...' : article.article}"></p>
+                        <th:block sec:authorize="hasAuthority('ADMIN')">
+                        <form class="form" th:action="@{'/admin/article-manager/'+${article.id}}+'/edit'" method="get">
+                            <div class="block__default">
+                                <input class="form__input--submit form__input--submit--small input__connect-left" type="submit" value="Edit"> 
+                                <input class="form__input--submit form__input--submit--small input__connect-right" type="submit" value="Delete" formaction="" formmethod="post" th:attr="formaction=@{'/admin/article-manager/'+${article.id}+'/delete'}"> 
+                            </div>
+                        </form>
+                        </th:block>
+                        <h4 th:text="${{article.createdDate}}" class="h4 h--color-gray"></h4>
+                    </div>
+                </article>
+                </th:block>
+                </div>
+                <div class="block block--border-none block--justify-center">
+                    <form action="/blog" method="post" class="form">
+                        <div><input class="form__input--submit" type="submit" value="Load 20"></div>
+                    </form>
+                </div>
+            </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+$font--style: Helvetica, Trebuchet MS, Verdana, Arial, Palatino;
+$font--default-size: 16px;
+$font--size-medium: 12px;
+$font--size-small: $font--default-size - 6;
+
+$main--color-white: rgba(255,255,255,1);
+$main--color-black: rgba(0,0,0,1);
+$main--color-blue: rgba(0,131,255,1);
+$main--color-orange: complement($main--color-blue);
+$main--color-red: rgba(255,0,67,1);
+$main--color-gray: darken($main--color-white,21.5);
+$main--color-dark-gray: lighten($main--color-black,20%);
+$main--color-light-gray: darken($main--color-white,6.25%);
+
+$main--border: 1px solid $main--color-gray;
+
+$main__width--80: 80%;
+$main__width--100: 100%;
+
+$footer__border--top: 7px solid $main--color-blue;
+$footer__border--bottom: 7px solid complement($main--color-blue);
+
+$thumbnail__header--height: 150px;

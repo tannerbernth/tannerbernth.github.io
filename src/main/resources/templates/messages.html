@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <script src="/js/message.js" type="text/javascript"></script>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+        	<th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column container--align-center">
+            <th:block th:include="fragment/notice :: notice"></th:block>
+
+            <ul class="block block--padding-large message__toolbar">
+                <li id="toolbar-group" class="message__toolbar__button" tabindex="0">New</li> 
+                <li class="message__toolbar__button message__toolbar__button--disabled">Edit</li> 
+                <li class="message__toolbar__button message__toolbar__button--disabled">Mark</li> 
+                <li class="message__toolbar__button message__toolbar__button--disabled">Leave</li>
+            </ul>
+            <div class="mask display-none"></div>
+            <div class="block block--overflow-initial block--padding-large message__form message__form--position-fixed display-none message__form--opacity-zero">
+                <div id="new-group-close" class="message__form__close a__round" tabindex="0">
+                    <span class="arrow arrow--right arrow--merge-left-right"></span>
+                    <span class="arrow arrow--left arrow--merge-left-right"></span>
+                </div>
+                <h2 class="h2">New Group</h2>
+                <form class="form" th:action="@{/messages}" th:object="${messageDto}" method="post">
+                    <div th:if="${testgroups != null}">
+                        <select th:each="group : ${testgroups}" name="groupName">
+                            <option value="" selected diabled>Select a chat</option>
+                            <option th:text="${group.name}" th:value="${group.name}"></option>    
+                        </select>
+                    </div>
+                    <div class="form__input">
+                        <input class="form__input--text" type="text" name="groupName">
+                        <label class="form__label"> Group Name </label>
+                    </div>
+                    <div class="form__input">
+                        <input class="form__input--text" type="text" id="member-selector" name="username" autocomplete="off">
+                        <label class="form__label"> Members </label> 
+                        <ul class="form__dropdown__list display-none"></ul>
+                    </div>
+                    <div class="block block--padding-none block--border-none" id="members"></div>
+                    <div class="form__input">
+                        <textarea name="message" class="form__input--text form__input--textarea"></textarea>
+                        <label class="form__label"> Message </label> 
+                    </div>
+                    <div><input id="submit" class="form__input--submit" type="submit" value="Send" tabindex="0" /></div>
+                </form>
+            </div>
+            <div class="container__message">
+                <ul class="message__list">
+                    <th:block th:if="${messages != null}">
+                    <li class="message" th:id="${message.group.id}" th:each="message, iterStat : ${messages}">
+                        <div class="message__header">
+                            <h3 th:text="${message.group.name == '' ? '[ No Name ]' : message.group.name}" th:classappend="${message.group.name == '' ? 'h--color-gray' : 'h--color-blue'}" class="h3"></h3>
+                        </div>
+                        <p class="message__p message__p--wrap" th:text="${message.message}"></p>
+                        <div>
+                            <a class="a__username" th:text="${message.senderUsername}" th:href="@{'/profile/'+${message.senderUsername}}"></a>
+                        </div>
+                        <div class="message__timestamp">
+                            <h4 class="h4 h--color-gray" th:text="${{message.createdDate}}"></h4>
+                            <th:block th:if="${message.createdDate != null}">
+                                <p th:if="${(message.createdDate.isAfter(lastreaddates[iterStat.index]) || message.createdDate.equals(lastreaddates[iterStat.index])) && message.senderId != user.id}" class="message__unread">Unread</p>
+                            </th:block>
+                        </div>
+                    </li>
+                </th:block>
+                <th:block th:if="${messages == null}">
+                    <li class="message__none">Create a group to message another user</li>
+                </th:block>
+                </ul>
+                <div class="message__view">
+                    <div class="message__view__list">
+                        <div class="message__header">
+                            <h3 class="h3 h--color-blue">Select a chat</h3>
+                            <h4 class="h4 h--color-gray">Created Date</h4>
+                        </div>
+                        <ul class="message__list">
+                            <li th:if="${messages == null}" class="message">
+                                <div class="message__username">
+                                    <a class="a">Username</a>
+                                </div>
+                                <div class="message__info">
+                                    <p class="message__p"> No Messages</p>
+                                    <div class="message__timestamp">
+                                            <p class="message__unread">Unread</p>
+                                        <h4 class="h4 h--color-gray">Sent Date</h4>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                <form autocomplete="off" class="form" th:object="${messageDto}" method="post">
+                    <div class="form__input">
+                        <textarea id="new-message" name="message" class="form__input--text form__input--textarea" disabled="disabled"></textarea>
+                        <label class="form__label"> Message </label> 
+                    </div>
+                    <div><input class="form__input--submit" type="submit" value="Send" disabled="disabled" /></div>
+                </form>
+            </div>
+            </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+        <script src="/js/email.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="mask display-none"></div>
+            <div class="container container--direction-column">
+                <th:block th:include="fragment/notice :: notice"></th:block>
+                <th:block th:include="fragment/about :: about"></th:block>
+                <th:block th:include="fragment/subscribe :: subscribe"></th:block>
+                <th:block th:include="fragment/contact :: contact"></th:block>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

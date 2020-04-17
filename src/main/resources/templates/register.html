@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+        
+    </head>
+    <body>
+        <main class="main">
+            <th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <div class="block error" th:if="${error != null}">
+                    <span th:text="${error}"></span>
+                    <span th:each="violation : ${violations}" th:text="${violation.message}"></span>
+                </div>
+                <div class="block block--direction-column block--align-center">
+                    <div class="block__two-row block--margin-bottom block--justify-center">
+                        <form autocomplete="off" class="form" th:action="@{/register}" th:object="${userDto}" method="post">
+                            <div class="form__input">
+                                <input id="username" class="form__input--text" type="text" th:field="*{username}" placeholder="Username" th:classappend="${#fields.hasErrors('username') ? 'form__input--text--color-red' : ''}" tabindex="1" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('username') ? 'form__label--color-red' : ''}"> Username </label>
+                                <div class="form__counter"><span>0</span>/20</div>
+                            </div>
+                            <div id="username__result" th:classappend="${#fields.hasErrors('username') ? 'form__notice--color-red' : '' }" class="form__notice">
+                                <th:block th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></th:block>
+                            </div>
+                            <div class="form__input">
+                                <input id="email" class="form__input--text" type="text" th:field="*{email}" placeholder="Email" th:classappend="${#fields.hasErrors('email') ? 'form__input--text--color-red' : ''}" tabindex="2" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('email') ? 'form__label--color-red' : ''}"> Email </label>
+                            </div>
+                            <div id="email__result" th:classappend="${#fields.hasErrors('email') ? 'form__notice--color-red' : '' }" class="form__notice">
+                                <th:block th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></th:block>
+                            </div>
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" th:field="*{password}" placeholder="Password" th:classappend="${#fields.hasErrors('password') ? 'form__input--text--color-red' : ''}" tabindex="3" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('password') ? 'form__label--color-red' : ''}"> Password </label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form__notice form__notice--color-red"></div>
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" th:field="*{matchingPassword}" placeholder="Confirm Password" th:classappend="${#fields.hasErrors('matchingPassword') ? 'form__input--text--color-red' : ''}" tabindex="4" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('matchingPassword') ? 'form__label--color-red' : ''}"> Confirm Password </label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="form__notice form__notice--color-red"></div>
+                            <div th:if="${nomatch}" th:text="${nomatch}" class="form__notice form__notice--color-red"></div>
+                            <div class="form__input">
+                                <div class="g-recaptcha" data-sitekey="6LfeFp4UAAAAABKd2-6VDfuFTXfaSwzkfzX9vqOV"></div>
+                            </div>
+                            <div th:if="${recaptchaError}" th:text="${recaptchaError}" class="form__notice form__notice--color-red"></div>
+                            <div><input class="form__input--submit" type="submit" value="Register" /></div>
+                        <span th:text="${successMessage}"></span>
+                        </form>
+                    </div>
+                    <div class="block__two-row block--border-top block--direction-column block--align-center">
+                        <h2 class="h2 h--color-blue h--extra-large">
+                            Already a user?
+                        </h2> 
+                        <a class="a a--size-large" th:href="@{/login}">Log in</a>
+                    </div>
+                </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

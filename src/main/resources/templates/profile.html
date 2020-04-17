@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en-US">
+    <head>
+        <th:block th:include="fragment/css-js :: css-js"></th:block>
+    </head>
+    <body>
+        <main class="main">
+        	<th:block th:include="fragment/fullHeader :: fullHeader"></th:block>
+            <div class="container container--direction-column">
+                <th:block th:include="fragment/notice :: notice"></th:block>
+                <div class="block block--padding-none">
+                    <div class="block__two-column block--padding-none block--direction-column block--border-right block--align-center">
+                        <div class="profile__header">
+                            <div class="profile__image" th:text="${user.username[0]}">
+                                <img src="/img/default.png"/>
+                            </div>
+                            <h2 class="h--margin-top">
+                                <a class="a a--fill a--color-blue" th:href="@{'/profile/'+${user.username}}" th:text="${user.username}"></a>
+                            </h2>
+                            <h3 class="h3" th:switch="${user.roles[0].name}" th:classappend="${user.roles[0].name == 'ADMIN' ? 'admin__title' : '' }">
+                                <th:block th:case="'ADMIN'" th:text="${'Administrator'}"></th:block>
+                                <th:block th:case="'USER'" th:text="${'User'}"></th:block>
+                            </h3>
+                        </div>
+                        <ul class="block__list profile__list">
+                            <li class="profile__list__header">
+                                Info
+                            </li>
+                            <li>Age</li>
+                            <li>Location</li>
+                        </ul>
+                        <ul class="block__list profile__list">
+                            <li class="profile__list__header">
+                                Settings
+                            </li>
+                            <li>
+                                Change Password
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="block__two-column block--direction-column block--align-center block--justify-center block--grow-2">
+                        <h2 class="h2 h--margin-bottom">Change Password</h2>
+                        <form class="form" method="post" th:action="@{/profile/change-password}" th:object="${changePasswordDto}"> 
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" th:field="*{currentPassword}" placeholder="Current Password" th:classappend="${#fields.hasErrors('currentPassword') ? 'form__input--text--color-red' : ''}" tabindex="3" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('currentPassword') ? 'form__label--color-red' : ''}"> Current Password </label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('currentPassword')}" th:errors="*{currentPassword}" class="form__notice form__notice--color-red"></div>
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" th:field="*{password}" placeholder="Password" th:classappend="${#fields.hasErrors('password') ? 'form__input--text--color-red' : ''}" tabindex="3" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('password') ? 'form__label--color-red' : ''}"> New Password </label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="form__notice form__notice--color-red"></div>
+                            <div class="form__input">
+                                <input class="form__input--password" type="password" th:field="*{matchingPassword}" placeholder="Confirm Password" th:classappend="${#fields.hasErrors('matchingPassword') ? 'form__input--text--color-red' : ''}" tabindex="4" />
+                                <label class="form__label" th:classappend="${#fields.hasErrors('matchingPassword') ? 'form__label--color-red' : ''}"> Confirm Password </label>
+                            </div>
+                            <div th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="form__notice form__notice--color-red"></div>
+                            <div th:if="${nomatch}" th:text="${nomatch}" class="form__notice form__notice--color-red"></div>
+                            <div>
+                                <input class="form__input--submit" type="submit" name="submit" value="Change Password">
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            <footer th:include="fragment/footer :: footer" class="footer"></footer>
+        </main>
+    </body>
+</html>

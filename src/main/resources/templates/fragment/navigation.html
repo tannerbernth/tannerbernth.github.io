@@ -1,0 +1,14 @@
+<nav th:fragment="navigation">
+    <ul class="nav__list nav__list--style-none nav__list--width-100">
+        <li tabindex="0"><a href="/index" class="nav__a nav__a--white">Home</a></li>
+        <li tabindex="0"><a href="/about" class="nav__a nav__a--white">About</a></li>
+        <li tabindex="0"><a href="/blog" class="nav__a nav__a--white">Blog</a></li>
+        <th:block sec:authorize="isAuthenticated()">
+        <li tabindex="0"><a href="/users" class="nav__a nav__a--white">Users</a></li>
+        </th:block>
+        <th:block sec:authorize="hasAuthority('ADMIN')">
+        <li tabindex="0"><a href="/admin" class="nav__a nav__a--white">Admin</a></li>
+        <li tabindex="0"><a href="/admin/article-manager" class="nav__a nav__a--white">Article Manager</a></li>
+    	</th:block>
+    </ul>
+</nav>
